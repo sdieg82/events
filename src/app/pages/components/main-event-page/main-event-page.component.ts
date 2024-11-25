@@ -25,8 +25,8 @@ export class MainEventPageComponent {
     this.eventService.addEvent(event)
   }
 
-  listEvents():void{
-  
+  deleteEventById(id:string){
+    this.eventService.deleteById(id)
   }
 
 }

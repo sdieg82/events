@@ -30,4 +30,8 @@ export class EventService {
     this.events.push(newEvent);
     console.log(this.events)
   }
+
+  deleteById(id:string){
+    this.events=this.events.filter((event)=>event.id!==id)
+  }
 }
