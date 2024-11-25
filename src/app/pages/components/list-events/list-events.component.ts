@@ -22,11 +22,20 @@ export class ListEventsComponent {
 
   @Output()
   public deleteEvent: EventEmitter<string> = new EventEmitter();
-
+  @Output()
+  public editIdEmitter:EventEmitter<string>=new EventEmitter();
+  
+  
   deleteEventById(id:string):void{
     if(!id) return
     this.deleteEvent.emit(id)
   }
 
+  updateEventById(id:string):void{
+    if(!id)return
+    this.editIdEmitter.emit(id)
+  }
+
+  
 
 }

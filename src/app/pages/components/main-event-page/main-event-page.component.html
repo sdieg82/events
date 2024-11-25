@@ -3,6 +3,6 @@
         <app-form-events (onNewEvent)="addEvent($event)"></app-form-events>
     </div>
     <div class="col-12 col-md-6 ">
-        <app-list-events [listEvent]="events"  (deleteEvent)="deleteEventById($event)"></app-list-events>
+        <app-list-events [listEvent]="events"  (deleteEvent)="deleteEventById($event)" (editIdEmitter)="updateEventById($event)"></app-list-events>
     </div>
 </div>

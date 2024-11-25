@@ -28,5 +28,8 @@ export class MainEventPageComponent {
   deleteEventById(id:string){
     this.eventService.deleteById(id)
   }
+  updateEventById(id:string){
+    this.eventService.updateEventById(id)
+  }
 
 }

@@ -31,7 +31,14 @@ export class EventService {
     console.log(this.events)
   }
 
-  deleteById(id:string){
-    this.events=this.events.filter((event)=>event.id!==id)
+  deleteById(id:string):void{
+    if(!id)  return 
+    const deleteEvent=this.events.filter((event)=>event.id!==id)
+    this.events=deleteEvent
+  }
+
+  updateEventById(id:string):void{
+    if(!id)  return
+    console.log('Este es el id que escogió',id)
   }
 }
