@@ -3,6 +3,7 @@ import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Event } from '../../interfaces/event.interface';
 import Swal from 'sweetalert2'
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-form-events',
@@ -19,8 +20,8 @@ export class FormEventsComponent {
 
   public myForm:FormGroup=this.fb.group({
     eventName:['',[Validators.required, Validators.minLength(4)]],
-    eventDate:[Date,[Validators.required]],
-    attendees:[Date,[Validators.required]],
+    eventDate:['',[Validators.required]],
+    eventAttends:[0,[Validators.required]],
   })
 
   saveEvent():void{
