@@ -7,7 +7,9 @@ import { Event } from '../interfaces/event.interface';
 })
 export class EventService {
 
-  constructor() { }
+  constructor() { 
+    this.readLocalStorage()
+  }
 
   
   public events:Event[]=[
@@ -25,10 +27,22 @@ export class EventService {
     },
   ]
 
+  private saveToLocalStorage():void{
+    localStorage.setItem('history',JSON.stringify(this.events))
+  }
+  private readLocalStorage(): void {
+    const savedEvents = localStorage.getItem('history');
+    if (savedEvents) {
+      this.events = JSON.parse(savedEvents);
+      this.eventsCopy = [...this.events]; // Sincronizar lista filtrada
+    }
+  }
+
   addEvent(event:Event):void{
     const newEvent:Event={...event}
     this.events.push(newEvent);
     this.eventsCopy=this.events
+    this.saveToLocalStorage()
   }
 
   public eventsCopy:Event[]=this.events
@@ -38,14 +52,15 @@ export class EventService {
     const deleteEvent=this.events.filter((event)=>event.id!==id)
     this.events=deleteEvent
     this.eventsCopy=this.events
+    this.saveToLocalStorage()
   }
 
   updateEventById(id:string):void{
     if(!id)  return
-    console.log('Este es el id que escogió',id)
   }
 
   searchInput(searchTag:string):Event[] | undefined{
+    
     if(searchTag==='') return this.eventsCopy=this.events
     this.eventsCopy=this.events.filter((tag)=>tag.eventName===searchTag)
     console.log('Retorna el firltrado',this.eventsCopy)
