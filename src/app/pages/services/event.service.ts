@@ -31,6 +31,8 @@ export class EventService {
     console.log(this.events)
   }
 
+  public eventsCopy:Event[]=this.events
+
   deleteById(id:string):void{
     if(!id)  return 
     const deleteEvent=this.events.filter((event)=>event.id!==id)
@@ -40,5 +42,13 @@ export class EventService {
   updateEventById(id:string):void{
     if(!id)  return
     console.log('Este es el id que escogió',id)
+  }
+
+  searchInput(searchTag:string):void{
+    console.log(searchTag)
+    console.log(this.events)
+    this.events=this.events.filter((tag)=>tag.eventName===searchTag)
+    console.log('luego del filtrado',this.eventsCopy)
+    
   }
 }
