@@ -3,7 +3,7 @@ import { FormEventsComponent } from "../form-events/form-events.component";
 import { ListEventsComponent } from "../list-events/list-events.component";
 import { Event } from '../../interfaces/event.interface';
 import { EventService } from '../../services/event.service';
-import { SearchEventsComponent } from "../search-events/search-events.component";
+import { SearchEventsComponent } from "../../components/search-events/search-events.component";
 
 @Component({
   selector: 'app-main-event-page',

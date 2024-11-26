@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MainEventPageComponent } from "./pages/components/main-event-page/main-event-page.component";
+import { MainEventPageComponent } from "./events/pages/main-event-page/main-event-page.component";
 
 @Component({
   selector: 'app-root',
