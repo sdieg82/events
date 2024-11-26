@@ -13,7 +13,7 @@ export class EventService {
   public events:Event[]=[
     { 
       id:uuid(),
-      eventName:'Convención ',
+      eventName:'Convención',
       eventDate: '2024-11-05',
       eventAttends:5
     },
@@ -28,7 +28,7 @@ export class EventService {
   addEvent(event:Event):void{
     const newEvent:Event={...event}
     this.events.push(newEvent);
-    console.log(this.events)
+    this.eventsCopy=this.events
   }
 
   public eventsCopy:Event[]=this.events
@@ -37,6 +37,7 @@ export class EventService {
     if(!id)  return 
     const deleteEvent=this.events.filter((event)=>event.id!==id)
     this.events=deleteEvent
+    this.eventsCopy=this.events
   }
 
   updateEventById(id:string):void{
@@ -44,11 +45,11 @@ export class EventService {
     console.log('Este es el id que escogió',id)
   }
 
-  searchInput(searchTag:string):void{
-    console.log(searchTag)
-    console.log(this.events)
-    this.events=this.events.filter((tag)=>tag.eventName===searchTag)
-    console.log('luego del filtrado',this.eventsCopy)
+  searchInput(searchTag:string):Event[] | undefined{
+    if(searchTag==='') return this.eventsCopy=this.events
+    this.eventsCopy=this.events.filter((tag)=>tag.eventName===searchTag)
+    console.log('Retorna el firltrado',this.eventsCopy)
+    return (this.eventsCopy)
     
   }
 }

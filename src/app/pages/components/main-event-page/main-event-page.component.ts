@@ -19,7 +19,7 @@ export class MainEventPageComponent {
   ){}
 
   get events():Event[]{
-    return [...this.eventService.events]
+    return [...this.eventService.eventsCopy]
   }
 
   addEvent(event:Event):void{
