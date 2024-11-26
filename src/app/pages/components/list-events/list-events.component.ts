@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Event } from '../../interfaces/event.interface';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-events',
@@ -28,7 +29,22 @@ export class ListEventsComponent {
   
   deleteEventById(id:string):void{
     if(!id) return
-    this.deleteEvent.emit(id)
+    Swal.fire({
+      title: 'Advertencia',
+      text: '¿Está seguro de cancelar el evento registrado?',
+      icon: 'warning',
+      showCancelButton: true, // Para agregar un botón de cancelación
+      confirmButtonText: 'OK',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Solo se ejecuta si el usuario presiona OK
+        this.deleteEvent.emit(id);
+      }
+    });
+    
+
+    
   }
 
   updateEventById(id:string):void{
