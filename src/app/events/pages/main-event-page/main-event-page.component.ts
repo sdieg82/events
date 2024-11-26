@@ -4,11 +4,12 @@ import { ListEventsComponent } from "../list-events/list-events.component";
 import { Event } from '../../interfaces/event.interface';
 import { EventService } from '../../services/event.service';
 import { SearchEventsComponent } from "../../components/search-events/search-events.component";
+import { TopBarComponent } from "../../components/top-bar/top-bar.component";
 
 @Component({
   selector: 'app-main-event-page',
   standalone: true,
-  imports: [FormEventsComponent, ListEventsComponent, SearchEventsComponent],
+  imports: [FormEventsComponent, ListEventsComponent, SearchEventsComponent, TopBarComponent],
   templateUrl: './main-event-page.component.html',
   styleUrl: './main-event-page.component.css'
 })
