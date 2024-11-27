@@ -32,6 +32,7 @@ export class ListEventsComponent {
   
   
   deleteEventById(id:string):void{
+    console.log('seleccionado',id)
     if(!id) return
     Swal.fire({
       title: 'Advertencia',
