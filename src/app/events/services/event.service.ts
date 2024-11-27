@@ -46,6 +46,9 @@ export class EventService {
   }
 
   public eventsCopy:Event[]=this.events
+  getEvents(){
+    return this.events
+  }
 
   deleteById(id:string):void{
     if(!id)  return 
@@ -55,8 +58,8 @@ export class EventService {
     this.saveToLocalStorage()
   }
 
-  updateEventById(id:string):void{
-    if(!id)  return
+  updateEventById(id:string){
+    return this.events.find((elemento) => elemento.id === id) || null;
   }
 
   searchInput(searchTag:string):Event[] | undefined{
@@ -65,6 +68,5 @@ export class EventService {
     this.eventsCopy=this.events.filter((tag)=>tag.eventName===searchTag)
     console.log('Retorna el firltrado',this.eventsCopy)
     return (this.eventsCopy)
-    
   }
 }

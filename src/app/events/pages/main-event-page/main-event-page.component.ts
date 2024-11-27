@@ -15,6 +15,8 @@ import { TopBarComponent } from "../../components/top-bar/top-bar.component";
 })
 export class MainEventPageComponent {
 
+  public eventId:string=''
+  
   constructor (
     private eventService:EventService
   ){}
@@ -31,7 +33,7 @@ export class MainEventPageComponent {
     this.eventService.deleteById(id)
   }
   updateEventById(id:string):void{
-    this.eventService.updateEventById(id)
+    this.eventId=id
   }
 
   searchInput(event:string):void{

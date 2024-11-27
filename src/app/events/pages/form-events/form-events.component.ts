@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Event } from '../../interfaces/event.interface';
 import { v4 as uuid } from 'uuid';
@@ -7,6 +7,7 @@ import Swal from 'sweetalert2'
 import { catchError } from 'rxjs';
 import { identifierName } from '@angular/compiler';
 import { AbstractControl, FormControl } from '@angular/forms';
+import { EventService } from '../../services/event.service';
 
 
 @Component({
@@ -16,15 +17,28 @@ import { AbstractControl, FormControl } from '@angular/forms';
   templateUrl: './form-events.component.html',
   styleUrl: './form-events.component.css'
 })
-export class FormEventsComponent {
+export class FormEventsComponent implements OnChanges {
   private fb=inject(FormBuilder)
   public today: string;
+
+  @Input()
+  public editId:string=''
+
   @Output()
   public onNewEvent:EventEmitter<Event>=new EventEmitter() 
-  constructor(){
+  constructor(
+    private eventService:EventService
+  ){
     this.today = new Date().toISOString().split('T')[0]; // Formato 'YYYY-MM-DD'
-
   } 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['editId'] && this.editId !== null) {
+      const elemento = this.eventService.updateEventById(this.editId); // Busca el elemento en el servicio
+      if (elemento) {
+        this.myForm.patchValue(elemento); // Llena el formulario con los datos
+      }
+    }
+  }
   public myForm:FormGroup=this.fb.group({
     id:[uuid()],
     eventName:['',[Validators.required, Validators.minLength(4)]],
@@ -59,7 +73,6 @@ export class FormEventsComponent {
     if (selectedDate < today) {
       return { invalidDate: true }; // Error: Fecha inválida
     }
-  
     return null; // Fecha válida
   }
 }
