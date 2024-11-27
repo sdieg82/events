@@ -14,15 +14,7 @@ import { FormEventsComponent } from '../form-events/form-events.component';
   templateUrl: './list-events.component.html',
   styleUrl: './list-events.component.css'
 })
-export class ListEventsComponent implements OnInit {
-
-  constructor(
-    private eventService:EventService,
-
-  ){}
-  ngOnInit(): void {
-    
-  }
+export class ListEventsComponent {
 
   @Input()
   public listEvent:Event[]=[{

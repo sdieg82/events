@@ -33,9 +33,9 @@ export class FormEventsComponent implements OnChanges {
   } 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['editId'] && this.editId !== null) {
-      const elemento = this.eventService.updateEventById(this.editId); // Busca el elemento en el servicio
-      if (elemento) {
-        this.myForm.reset(elemento); // Llena el formulario con los datos
+      const event = this.eventService.updateEventById(this.editId); // Busca el elemento en el servicio
+      if (event) {
+        this.myForm.reset(event); // Llena el formulario con los datos
       }
     }
   }
