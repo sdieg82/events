@@ -35,7 +35,7 @@ export class FormEventsComponent implements OnChanges {
     if (changes['editId'] && this.editId !== null) {
       const elemento = this.eventService.updateEventById(this.editId); // Busca el elemento en el servicio
       if (elemento) {
-        this.myForm.patchValue(elemento); // Llena el formulario con los datos
+        this.myForm.reset(elemento); // Llena el formulario con los datos
       }
     }
   }

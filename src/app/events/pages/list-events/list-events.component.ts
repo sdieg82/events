@@ -21,7 +21,7 @@ export class ListEventsComponent implements OnInit {
 
   ){}
   ngOnInit(): void {
-    this.listEvent=this.eventService.getEvents()
+    
   }
 
   @Input()
@@ -36,7 +36,7 @@ export class ListEventsComponent implements OnInit {
   @Output()
   public deleteEvent: EventEmitter<string> = new EventEmitter();
   @Output()
-  public editIdEmitter:EventEmitter<string>=new EventEmitter();
+  public editIdEmitter:EventEmitter<string> = new EventEmitter();
   
   
   deleteEventById(id:string):void{

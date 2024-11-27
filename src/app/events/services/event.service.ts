@@ -46,9 +46,6 @@ export class EventService {
   }
 
   public eventsCopy:Event[]=this.events
-  getEvents(){
-    return this.events
-  }
 
   deleteById(id:string):void{
     if(!id)  return 
